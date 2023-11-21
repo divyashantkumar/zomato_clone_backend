@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body
+    id="bdy"
+    style="
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <div>
+      <button
+        id="btn"
+        style="
+          height: 60px;
+          padding: 10px 20px;
+          background-color: rgb(40, 140, 239);
+          font-size: 20px;
+        "
+      >
+        Login with google
+      </button>
+    </div>
+
+    <script>
+      const btn = document.querySelector("#btn");
+      console.log(btn);
+      btn.addEventListener("click", async () => {
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = function (res) {
+          if (xhr.readyState === 4) {
+            console.log(xhr.response.data);
+            // window.open(xhr.response.data, "_self")
+          }
+        };
+        xhr.open("GET", "http://localhost:8080/user/authorization/url");
+        xhr.send();
+        // console.log(response, response?.data);
+        // window.open(response?.data, "_self");
+      });
+    </script>
+  </body>
+</html>
